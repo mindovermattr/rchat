@@ -1,0 +1,26 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+.tiptap-input {
+  min-height: 44px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 8px 12px;
+}
+
+.tiptap-input:focus {
+  outline: none;
+}
+
+.tiptap-content p {
+  margin: 0;
+}
+
+.tiptap-content a {
+  color: inherit;
+  text-decoration: underline;
+}

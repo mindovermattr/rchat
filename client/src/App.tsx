@@ -1,7 +1,7 @@
-import { Button } from "@mantine/core";
+import { Layout } from "./components/Layout";
 
 function App() {
-  return <Button variant="gradient">asdasdasd</Button>;
+  return <Layout />;
 }
 
 export default App;
