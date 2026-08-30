@@ -21,6 +21,7 @@
     "@tiptap/pm": "^3.30.3",
     "@tiptap/react": "^3.30.3",
     "@tiptap/starter-kit": "^3.30.3",
+    "dompurify": "^3.4.14",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
@@ -32,6 +33,7 @@
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
+    "@types/dompurify": "^3.0.5",
     "@vitejs/plugin-react": "^6.1.0",
     "babel-plugin-react-compiler": "^1.0.0",
     "eslint": "^10.9.0",

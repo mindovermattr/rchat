@@ -1,8 +1,8 @@
 import { AppShell, Burger, Group, Text, ThemeIcon } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconMessages } from "@tabler/icons-react";
+import { Chat } from "./Chat/Chat";
 import { Sidebar } from "./Sidebar";
-import { Chat } from "./Chat";
 
 export function Layout() {
   const [opened, { toggle }] = useDisclosure();
@@ -33,7 +33,7 @@ export function Layout() {
         <Sidebar />
       </AppShell.Navbar>
 
-      <AppShell.Main>
+      <AppShell.Main style={{ height: "100dvh" }}>
         <Chat />
       </AppShell.Main>
     </AppShell>

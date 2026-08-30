@@ -1,27 +1,17 @@
-import { RichTextEditor } from "@mantine/tiptap";
-import { Link } from "@tiptap/extension-link";
-import { StarterKit } from "@tiptap/starter-kit";
-import { useEditor } from "@tiptap/react";
 import { ActionIcon, Box, Group, Tooltip } from "@mantine/core";
-import {
-  IconArrowRight,
-  IconBold,
-  IconItalic,
-  IconLink,
-  IconList,
-  IconSend,
-} from "@tabler/icons-react";
+import { RichTextEditor } from "@mantine/tiptap";
 import { useAction } from "@reatom/react";
+import { IconArrowRight, IconBold, IconItalic, IconLink, IconList, IconSend } from "@tabler/icons-react";
+import { Link } from "@tiptap/extension-link";
+import { useEditor } from "@tiptap/react";
+import { StarterKit } from "@tiptap/starter-kit";
 import { sendMessage } from "../model";
 
 export function MessageInput() {
   const handleSend = useAction(sendMessage);
 
   const editor = useEditor({
-    extensions: [
-      StarterKit,
-      Link.configure({ openOnClick: false, autolink: true }),
-    ],
+    extensions: [StarterKit, Link.configure({ openOnClick: false, autolink: true })],
     content: "",
     immediatelyRender: false,
     editorProps: {
@@ -48,10 +38,7 @@ export function MessageInput() {
   };
 
   return (
-    <Box
-      p="md"
-      style={{ borderTop: "1px solid var(--mantine-color-default-border)" }}
-    >
+    <Box p="md" style={{ borderTop: "1px solid var(--mantine-color-default-border)" }}>
       <Group align="flex-end" wrap="nowrap">
         <RichTextEditor editor={editor} style={{ flex: 1 }}>
           <RichTextEditor.Toolbar sticky stickyOffset={0}>
@@ -73,26 +60,14 @@ export function MessageInput() {
           <RichTextEditor.Content />
         </RichTextEditor>
         <Tooltip label="Отправить (Enter)">
-          <ActionIcon
-            size="lg"
-            radius="xl"
-            color="blue"
-            variant="filled"
-            onClick={submit}
-            disabled={editor.isEmpty}
-          >
+          <ActionIcon size="lg" radius="xl" color="blue" variant="filled" onClick={submit} disabled={editor.isEmpty}>
             <IconSend size={18} />
           </ActionIcon>
         </Tooltip>
       </Group>
       <Group gap={4} mt={4}>
         <IconArrowRight size={12} />
-        <Box
-          component="span"
-          size="xs"
-          c="dimmed"
-          style={{ fontSize: 11 }}
-        >
+        <Box component="span" size="xs" c="dimmed" style={{ fontSize: 11 }}>
           Enter — отправить, Shift+Enter — новая строка
         </Box>
       </Group>
