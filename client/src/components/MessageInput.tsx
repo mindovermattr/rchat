@@ -1,7 +1,14 @@
 import { ActionIcon, Box, Group, Tooltip } from "@mantine/core";
 import { RichTextEditor } from "@mantine/tiptap";
 import { useAction } from "@reatom/react";
-import { IconArrowRight, IconBold, IconItalic, IconLink, IconList, IconSend } from "@tabler/icons-react";
+import {
+  IconArrowRight,
+  IconBold,
+  IconItalic,
+  IconLink,
+  IconList,
+  IconSend,
+} from "@tabler/icons-react";
 import { Link } from "@tiptap/extension-link";
 import { useEditor } from "@tiptap/react";
 import { StarterKit } from "@tiptap/starter-kit";
@@ -60,7 +67,14 @@ export function MessageInput() {
           <RichTextEditor.Content />
         </RichTextEditor>
         <Tooltip label="Отправить (Enter)">
-          <ActionIcon size="lg" radius="xl" color="blue" variant="filled" onClick={submit} disabled={editor.isEmpty}>
+          <ActionIcon
+            size="lg"
+            radius="xl"
+            color="blue"
+            variant="filled"
+            onClick={submit}
+            disabled={editor.isEmpty}
+          >
             <IconSend size={18} />
           </ActionIcon>
         </Tooltip>

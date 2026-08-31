@@ -1,7 +1,14 @@
 import { Avatar, Badge, Box, Group, ScrollArea, Stack, Text, TextInput } from "@mantine/core";
 import { useAction, useAtom } from "@reatom/react";
 import { IconSearch } from "@tabler/icons-react";
-import { chatTitle, filteredChatsAtom, searchQueryAtom, selectChat, selectedChatIdAtom, userByIdAtom } from "../model";
+import {
+  chatTitle,
+  filteredChatsAtom,
+  searchQueryAtom,
+  selectChat,
+  selectedChatIdAtom,
+  userByIdAtom,
+} from "../model";
 import type { Chat } from "../types";
 import { formatRelative, initials } from "../utils";
 
@@ -45,7 +52,17 @@ export function Sidebar() {
   );
 }
 
-function ConversationItem({ chat, title, selected, onClick }: { chat: Chat; title: string; selected: boolean; onClick: () => void }) {
+function ConversationItem({
+  chat,
+  title,
+  selected,
+  onClick,
+}: {
+  chat: Chat;
+  title: string;
+  selected: boolean;
+  onClick: () => void;
+}) {
   return (
     <Group
       wrap="nowrap"

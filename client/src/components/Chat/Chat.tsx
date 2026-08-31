@@ -29,6 +29,8 @@ export function Chat() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
+          minHeight: 0,
+          overflow: "hidden",
         }}
       >
         <MessageList messages={messages} />
@@ -66,7 +68,7 @@ function MessageList({ messages }: { messages: Message[] }) {
   }, [messages.length]);
 
   return (
-    <ScrollArea flex={1} p="md" viewportRef={viewport}>
+    <ScrollArea flex={1} p="md" style={{ minHeight: 0 }} viewportRef={viewport}>
       <Stack gap="sm">
         {messages.map((m) => (
           <MessageBubble key={m.id} message={m} own={m.senderId === "u-me"} />
@@ -95,6 +97,7 @@ function MessageBubble({ message, own }: { message: Message; own: boolean }) {
         radius="md"
         withBorder={!own}
         maw="70%"
+        className="chat-message"
         bg={own ? "blue" : "white"}
         c={own ? "gray.2" : "black"}
         dangerouslySetInnerHTML={{ __html: sanitizedHTML }}

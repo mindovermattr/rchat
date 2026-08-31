@@ -1,6 +1,6 @@
 import { action, atom, computed } from "@reatom/core";
-import type { Message, User } from "../types";
 import { mockMessages } from "../mocks/data";
+import type { Message, User } from "../types";
 import { chatsAtom, selectedChatAtom, selectedChatIdAtom } from "./chats";
 import { currentUserIdAtom, userByIdAtom } from "./users";
 
@@ -8,7 +8,9 @@ export const messagesAtom = atom(mockMessages, "messagesAtom");
 
 export const selectedMessagesAtom = computed(() => {
   const chatId = selectedChatIdAtom();
+
   if (!chatId) return [];
+
   return messagesAtom()
     .filter((m) => m.chatId === chatId)
     .sort((a, b) => a.createdAt - b.createdAt);
@@ -17,8 +19,10 @@ export const selectedMessagesAtom = computed(() => {
 export const chatInterlocutorsAtom = computed(() => {
   const chat = selectedChatAtom();
   if (!chat) return [];
+
   const me = currentUserIdAtom();
   const users = userByIdAtom();
+
   return chat.participantIds
     .filter((id) => id !== me)
     .map((id) => users[id])
@@ -28,6 +32,7 @@ export const chatInterlocutorsAtom = computed(() => {
 export const sendMessage = action((html: string) => {
   const chatId = selectedChatIdAtom();
   if (!chatId) return;
+
   const text = html.replace(/<[^>]*>/g, "").trim();
   if (!text) return;
 
@@ -40,11 +45,5 @@ export const sendMessage = action((html: string) => {
     status: "sent",
   };
   messagesAtom.set([...messagesAtom(), message]);
-  chatsAtom.set(
-    chatsAtom().map((c) =>
-      c.id === chatId
-        ? { ...c, lastMessageText: text, lastMessageAt: message.createdAt }
-        : c,
-    ),
-  );
+  chatsAtom.set(chatsAtom().map((c) => (c.id === chatId ? { ...c, lastMessageText: text, lastMessageAt: message.createdAt } : c)));
 }, "sendMessage");

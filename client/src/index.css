@@ -16,7 +16,8 @@ body,
   outline: none;
 }
 
-.tiptap-content p {
+.tiptap-content p,
+.chat-message p {
   margin: 0;
 }
 
