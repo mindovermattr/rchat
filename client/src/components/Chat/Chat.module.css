@@ -1,0 +1,8 @@
+.bubbleOwn {
+  background: var(--mantine-color-blue-6);
+  color: var(--mantine-color-white);
+}
+
+.timeOwn {
+  color: var(--mantine-color-blue-6);
+}

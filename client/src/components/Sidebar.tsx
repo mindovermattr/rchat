@@ -8,7 +8,7 @@ import {
   selectChat,
   selectedChatIdAtom,
   userByIdAtom,
-} from "../model";
+} from "../models";
 import type { Chat } from "../types";
 import { formatRelative, initials } from "../utils";
 

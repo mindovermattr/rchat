@@ -1,11 +1,11 @@
-import { Avatar, Box, Group, Paper, ScrollArea, Stack, Text } from "@mantine/core";
+import { Avatar, Box, Flex, Group, Paper, ScrollArea, Stack, Text } from "@mantine/core";
 import { useAtom } from "@reatom/react";
 import DOMPurify from "dompurify";
 import { useEffect, useRef } from "react";
-import { chatInterlocutorsAtom, selectedChatAtom, selectedMessagesAtom } from "../../model";
+import { chatInterlocutorsAtom, selectedChatAtom, selectedMessagesAtom } from "../../models";
 import type { Message, User } from "../../types";
 import { initials } from "../../utils";
-import { MessageInput } from "../MessageInput";
+import { MessageInput } from "./MessageInput";
 
 export function Chat() {
   const [chat] = useAtom(selectedChatAtom);
@@ -23,25 +23,19 @@ export function Chat() {
   return (
     <Stack flex={1} h="100%" gap={0}>
       <ChatHeader interlocutors={interlocutors} />
-      <Box
-        flex={1}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          minHeight: 0,
-          overflow: "hidden",
-        }}
-      >
+      <Flex flex={1} direction="column">
         <MessageList messages={messages} />
         <MessageInput />
-      </Box>
+      </Flex>
     </Stack>
   );
 }
 
 function ChatHeader({ interlocutors }: { interlocutors: User[] }) {
-  const title = interlocutors.length > 1 ? `Группа (${interlocutors.length})` : (interlocutors[0]?.name ?? "Диалог");
+  const title =
+    interlocutors.length > 1
+      ? `Группа (${interlocutors.length})`
+      : (interlocutors[0]?.name ?? "Диалог");
   const status = interlocutors[0]?.status;
   const statusLabel = status === "online" ? "в сети" : status === "away" ? "отошёл" : "не в сети";
 
@@ -98,8 +92,8 @@ function MessageBubble({ message, own }: { message: Message; own: boolean }) {
         withBorder={!own}
         maw="70%"
         className="chat-message"
-        bg={own ? "blue" : "white"}
-        c={own ? "gray.2" : "black"}
+        bg={own ? "blue" : undefined}
+        c={own ? "gray.2" : undefined}
         dangerouslySetInnerHTML={{ __html: sanitizedHTML }}
       />
       <Text size="xs" c={own ? "blue.7" : "dimmed"} ta="right" mt={4}>

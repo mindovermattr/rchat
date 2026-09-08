@@ -12,7 +12,7 @@ import {
 import { Link } from "@tiptap/extension-link";
 import { useEditor } from "@tiptap/react";
 import { StarterKit } from "@tiptap/starter-kit";
-import { sendMessage } from "../model";
+import { sendMessage } from "../../models";
 
 export function MessageInput() {
   const handleSend = useAction(sendMessage);
