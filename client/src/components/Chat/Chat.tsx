@@ -1,10 +1,10 @@
+import { chatInterlocutorsAtom, selectedChatAtom, selectedMessagesAtom } from "@/models";
+import type { Message, User } from "@/types";
+import { formatTime, initials } from "@/utils";
 import { Avatar, Box, Flex, Group, Paper, ScrollArea, Stack, Text } from "@mantine/core";
 import { useAtom } from "@reatom/react";
 import DOMPurify from "dompurify";
 import { useEffect, useRef } from "react";
-import { chatInterlocutorsAtom, selectedChatAtom, selectedMessagesAtom } from "../../models";
-import type { Message, User } from "../../types";
-import { initials } from "../../utils";
 import { MessageInput } from "./MessageInput";
 
 export function Chat() {
@@ -74,10 +74,7 @@ function MessageList({ messages }: { messages: Message[] }) {
 
 function MessageBubble({ message, own }: { message: Message; own: boolean }) {
   const sanitizedHTML = DOMPurify.sanitize(message.html);
-  const formattedTime = new Date(message.createdAt).toLocaleTimeString("ru-RU", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+  const formattedTime = formatTime(message.createdAt);
 
   return (
     <Group justify={own ? "flex-end" : "flex-start"} wrap="nowrap" gap={"sm"}>
