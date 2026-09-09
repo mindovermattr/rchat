@@ -1,3 +1,4 @@
+import { Sidebar } from "@/components/Sidebar";
 import {
   ActionIcon,
   AppShell,
@@ -11,10 +12,8 @@ import {
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconMessages, IconMoon, IconSun } from "@tabler/icons-react";
-import { Sidebar } from "../Sidebar";
-import { Chat } from "./Chat";
 
-export function ChatLayout() {
+export function MainLayout({ children }: { children: React.ReactNode }) {
   const [opened, { toggle }] = useDisclosure();
   const { setColorScheme } = useMantineColorScheme();
   const computedColorScheme = useComputedColorScheme("light");
@@ -62,9 +61,7 @@ export function ChatLayout() {
         <Sidebar />
       </AppShell.Navbar>
 
-      <AppShell.Main style={{ height: "100dvh" }}>
-        <Chat />
-      </AppShell.Main>
+      <AppShell.Main style={{ height: "100dvh" }}>{children}</AppShell.Main>
     </AppShell>
   );
 }
