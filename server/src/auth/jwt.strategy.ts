@@ -1,18 +1,22 @@
 import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
-import { ExtractJwt, Strategy } from 'passport-jwt';
-import { DATABASE } from '../db/database.constants';
-import type { Database } from '../db';
-import { users } from '../db/schema';
 import { eq } from 'drizzle-orm';
+import { ExtractJwt, Strategy } from 'passport-jwt';
+import type { Database } from '../db';
+import { DATABASE } from '../db/database.constants';
+import { users } from '../db/schema';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(@Inject(DATABASE) private readonly db: Database) {
+  constructor(
+    @Inject(DATABASE) private readonly db: Database,
+    config: ConfigService,
+  ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: process.env.JWT_SECRET ?? 'dev-secret',
+      secretOrKey: config.get<string>('JWT_SECRET')!,
     });
   }
 
@@ -25,7 +29,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     if (!user) {
       throw new UnauthorizedException();
     }
+
     const { passwordHash, ...result } = user;
+
     return result;
   }
 }
