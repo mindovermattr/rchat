@@ -8,6 +8,13 @@
       "when": 1788931795193,
       "tag": "0000_woozy_scrambler",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1789092390362,
+      "tag": "0001_goofy_captain_america",
+      "breakpoints": true
     }
   ]
 }
