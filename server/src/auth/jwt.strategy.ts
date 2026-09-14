@@ -5,7 +5,7 @@ import { eq } from 'drizzle-orm';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import type { Database } from '../db';
 import { DATABASE } from '../db/database.constants';
-import { users } from '../db/schema';
+import { users } from '../db/schemes/user.schema';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {

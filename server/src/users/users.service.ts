@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
 import type { Database } from '../db';
 import { DATABASE } from '../db/database.constants';
-import { users } from '../db/schema';
+import { users } from '../db/schemes/user.schema';
 
 @Injectable()
 export class UsersService {
