@@ -12,8 +12,10 @@ import {
   TextInput,
   Title,
 } from "@mantine/core";
+import { wrap } from "@reatom/core";
 import { reatomComponent } from "@reatom/react";
 import { loginRoute } from "./login.route";
+import { registerRoute } from "./register.route";
 
 export const LoginPage = reatomComponent(() => {
   if (!loginRoute.loader.ready()) return <div>Loading login page...</div>;
@@ -78,8 +80,8 @@ export const LoginPage = reatomComponent(() => {
 
               <Text ta="center" size="sm" mt="md">
                 Don't have an account?{" "}
-                <Anchor component="button" onClick={() => {}}>
-                  Create account
+                <Anchor type="button" component="button" onClick={wrap(() => registerRoute.go())}>
+                  Create Account
                 </Anchor>
               </Text>
             </Stack>
