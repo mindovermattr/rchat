@@ -1,0 +1,10 @@
+{
+  "name": "rchat",
+  "private": true,
+  "workspaces": ["apps/client", "apps/server"],
+  "scripts": {
+    "dev:front": "npm run dev -w client",
+    "dev:back": "npm run dev -w server",
+    "dev": "npm run dev --workspaces --if-present"
+  }
+}
