@@ -18,9 +18,10 @@ import { loginRoute } from "./login.route";
 import { registerRoute } from "./register.route";
 
 export const LoginPage = reatomComponent(() => {
-  if (!loginRoute.loader.ready()) return <div>Loading login page...</div>;
+  const loginForm = loginRoute.loader.data()?.loginForm;
+  if (!loginForm) return <div>Loading login page...</div>;
 
-  const { submit, fields } = loginRoute.loader.data().loginForm;
+  const { submit, fields } = loginForm;
 
   console.log(fields);
   return (

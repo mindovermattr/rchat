@@ -1,10 +1,19 @@
 {
   "name": "rchat",
   "private": true,
-  "workspaces": ["apps/client", "apps/server"],
+  "workspaces": [
+    "apps/client",
+    "apps/server"
+  ],
   "scripts": {
     "dev:front": "npm run dev -w client",
     "dev:back": "npm run dev -w server",
-    "dev": "npm run dev --workspaces --if-present"
+    "dev": "concurrently -n client,server \"npm:dev:front\" \"npm:dev:back\"",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5"
   }
 }
