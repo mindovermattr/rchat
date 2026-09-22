@@ -23,6 +23,7 @@
     "@tiptap/react": "^3.30.3",
     "@tiptap/starter-kit": "^3.30.3",
     "dompurify": "^3.4.14",
+    "ofetch": "^1.5.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
