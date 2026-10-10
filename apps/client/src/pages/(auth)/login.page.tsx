@@ -13,7 +13,7 @@ import {
   Title,
 } from "@mantine/core";
 import { wrap } from "@reatom/core";
-import { reatomComponent } from "@reatom/react";
+import { bindField, reatomComponent } from "@reatom/react";
 import { loginRoute } from "./login.route";
 import { registerRoute } from "./register.route";
 
@@ -43,6 +43,7 @@ export const LoginPage = reatomComponent(() => {
           >
             <Stack gap="md">
               <TextInput
+                {...bindField(fields.email)}
                 required
                 label="Email"
                 placeholder="hello@example.com"
@@ -51,6 +52,7 @@ export const LoginPage = reatomComponent(() => {
               />
 
               <PasswordInput
+                {...bindField(fields.password)}
                 required
                 label="Password"
                 placeholder="Your password"

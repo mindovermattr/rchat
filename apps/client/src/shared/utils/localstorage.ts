@@ -1,4 +1,8 @@
-interface UserWithToken extends User {
+import type { components } from "@rchat/contracts";
+
+type SafeUser = components["schemas"]["SafeUser"];
+
+interface UserWithToken extends SafeUser {
   token: string;
 }
 

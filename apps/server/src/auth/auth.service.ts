@@ -2,6 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { UsersService } from '../users/users.service';
+import { toSafeUser } from '../users/safe-user';
 
 @Injectable()
 export class AuthService {
@@ -35,10 +36,10 @@ export class AuthService {
       passwordHash,
     });
 
-    const { passwordHash: _ignored, ...safe } = user;
+    const safe = toSafeUser(user);
     const { accessToken } = await this.getAccessToken(safe);
 
-    return { user: safe, access_token: accessToken };
+    return { user: safe, accessToken };
   }
 
   async getAccessToken(user: { id: string; email: string }) {

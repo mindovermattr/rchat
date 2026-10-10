@@ -3,7 +3,8 @@
   "private": true,
   "workspaces": [
     "apps/client",
-    "apps/server"
+    "apps/server",
+    "packages/contracts"
   ],
   "scripts": {
     "dev:front": "npm run dev -w client",
@@ -11,6 +12,7 @@
     "dev": "concurrently -n client,server \"npm:dev:front\" \"npm:dev:back\"",
     "build": "npm run build --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
+    "gen:api": "npm run gen:types --workspace packages/contracts",
     "test": "npm run test --workspaces --if-present"
   },
   "devDependencies": {

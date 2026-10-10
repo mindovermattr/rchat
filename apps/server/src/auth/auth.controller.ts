@@ -6,22 +6,31 @@ import {
   Post,
   UnauthorizedException,
 } from '@nestjs/common';
+import type { components } from '@rchat/contracts';
 import { AuthService } from './auth.service';
-import { LoginDto } from './dto/login.dto';
-import { RegisterDto } from './dto/register.dto';
+import { OpenApiValidationPipe } from '../openapi/openapi-validation.pipe';
+
+type RegisterBody = components['schemas']['RegisterBody'];
+type LoginBody = components['schemas']['LoginBody'];
+type RegisterResponse = components['schemas']['RegisterResponse'];
+type LoginResponse = components['schemas']['LoginResponse'];
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('register')
-  register(@Body() body: RegisterDto) {
+  register(
+    @Body(new OpenApiValidationPipe('RegisterBody')) body: RegisterBody,
+  ): Promise<RegisterResponse> {
     return this.authService.register(body);
   }
 
   @Post('login')
   @HttpCode(HttpStatus.OK)
-  async login(@Body() body: LoginDto) {
+  async login(
+    @Body(new OpenApiValidationPipe('LoginBody')) body: LoginBody,
+  ): Promise<LoginResponse> {
     const user = await this.authService.validateUser(body.email, body.password);
     if (!user) {
       throw new UnauthorizedException('Invalid credentials');

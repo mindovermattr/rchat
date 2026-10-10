@@ -1,25 +1,27 @@
 import { ROUTES } from "@/shared/constants/routes";
 import { reatomForm, reatomRoute } from "@reatom/core";
+import { z } from "zod";
+
+const loginSchema = z.object({
+  email: z.email(),
+  password: z.string().nonempty(),
+});
+
+type LoginForm = z.infer<typeof loginSchema>;
 
 export const loginRoute = reatomRoute({
   path: ROUTES.LOGIN,
   async loader() {
-    const loginForm = reatomForm(
+    const loginForm = reatomForm<LoginForm>(
       {
-        username: "",
+        email: "",
         password: "",
-        passwordDouble: "",
       },
       {
-        validate({ password, passwordDouble }) {
-          if (password !== passwordDouble) {
-            return "Passwords do not match";
-          }
-        },
+        schema: loginSchema,
         onSubmit: async (values) => {
-          console.log("Submitting login form:", values);
           await new Promise((r) => setTimeout(r, 1000));
-          return { success: true };
+          return { success: true, data: values };
         },
         validateOnBlur: true,
       },
