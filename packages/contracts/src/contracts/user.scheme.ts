@@ -1,13 +1,14 @@
 import { Type, type Static } from "@sinclair/typebox";
+import { Email } from "./common.scheme";
 
 export const SafeUser = Type.Object(
   {
     id: Type.String(),
-    email: Type.String(),
+    email: Email,
     name: Type.String(),
     createdAt: Type.String(),
   },
   { additionalProperties: false },
 );
 
-export type TSafeUser = Static<typeof SafeUser>;
+export type SafeUser = Static<typeof SafeUser>;

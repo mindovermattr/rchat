@@ -103,6 +103,8 @@ components:
       properties:
         email:
           type: string
+          format: email
+          maxLength: 255
           example: user@example.com
         name:
           type: string
@@ -121,6 +123,8 @@ components:
       properties:
         email:
           type: string
+          format: email
+          maxLength: 255
           example: user@example.com
         password:
           type: string
@@ -134,6 +138,8 @@ components:
           type: string
         email:
           type: string
+          format: email
+          maxLength: 255
         name:
           type: string
         createdAt:

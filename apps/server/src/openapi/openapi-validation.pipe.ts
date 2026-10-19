@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable, PipeTransform } from '@nestjs/common';
 import Ajv, { type ValidateFunction } from 'ajv';
+import addFormats from 'ajv-formats';
 import { getSchema } from './openapi-spec';
 
 const ajv = new Ajv({
@@ -8,6 +9,7 @@ const ajv = new Ajv({
   coerceTypes: true,
 });
 
+addFormats(ajv);
 ajv.addKeyword('example');
 
 @Injectable()
