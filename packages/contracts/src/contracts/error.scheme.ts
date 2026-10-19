@@ -1,9 +1,11 @@
 import { Type } from "@sinclair/typebox";
 
-export const Error = Type.Object(
+export const ErrorResponse = Type.Object(
   {
-    statusCode: Type.Number(),
+    statusCode: Type.Integer(),
     message: Type.String(),
   },
-  { additionalProperties: false },
+  {
+    additionalProperties: false,
+  },
 );

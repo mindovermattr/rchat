@@ -1,4 +1,4 @@
-import { Type, type Static } from "@sinclair/typebox";
+import { Type } from "@sinclair/typebox";
 
 export const Email = Type.String({
   format: "email",
@@ -6,4 +6,12 @@ export const Email = Type.String({
   example: "user@example.com",
 });
 
-export type Email = Static<typeof Email>;
+export const Name = Type.String({
+  maxLength: 255,
+  minLength: 4,
+});
+
+export const Password = Type.String({
+  minLength: 8,
+  maxLength: 24,
+});
